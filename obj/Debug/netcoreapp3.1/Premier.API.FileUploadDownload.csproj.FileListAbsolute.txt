@@ -1,0 +1,7 @@
+C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\Premier.API.FileUploadDownload.csproj.AssemblyReference.cache
+C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\Premier.API.FileUploadDownload.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\Premier.API.FileUploadDownload.AssemblyInfoInputs.cache
+C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\Premier.API.FileUploadDownload.AssemblyInfo.cs
+C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\Premier.API.FileUploadDownload.csproj.CoreCompileInputs.cache
+C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\Premier.API.FileUploadDownload.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\Premier.API.FileUploadDownload.MvcApplicationPartsAssemblyInfo.cache

@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext "Data Source=C3DIPBDB02;Initial Catalog=EM_DevMaster;Integrated Security=SSPI;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" Microsoft.EntityFrameworkCore.SqlServer -f -namespace Premier.API.FileUploadDownload.Data.Entity -OutputDir TempModels -t DBO.fsEntries

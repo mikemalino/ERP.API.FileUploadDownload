@@ -1,0 +1,7 @@
+﻿Below is an example of creating a database first data model
+Copy and paste this command into the Package Manager Console, change the data source / catalog (connection string)
+Tables to be generated can be defined with the parameter -t  (example -t IncomeStatementSetup)
+Data entity models with be output to the \TempModels folder.  Copy this output to your \data\entity folders and update the \data\contexts OnModelCreating event
+
+
+Scaffold-DbContext "Data Source=C3DIPBDB02;Initial Catalog=EM_NA_Test;Integrated Security=SSPI;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" Microsoft.EntityFrameworkCore.SqlServer -f -namespace Premier.API.FileUploadDownload.Data.Entity -no-onconfiguring -OutputDir TempModels -t DBO.Notes DBO.NoteRefs

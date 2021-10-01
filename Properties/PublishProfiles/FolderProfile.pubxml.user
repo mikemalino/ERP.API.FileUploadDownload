@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\dsebenic\source\publishedAPIs\Requisition</_PublishTargetUrl>
+    <History>True|2021-05-19T19:44:38.4299629Z;True|2021-05-18T12:24:10.3870810-07:00;True|2021-05-18T11:17:20.8607834-07:00;</History>
+  </PropertyGroup>
+</Project>
