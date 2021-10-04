@@ -27,7 +27,7 @@ namespace Premier.API.FileUploadDownload.Data.Contexts
         protected readonly IPublisher _publisher;
 
         // Sets the current users dataprofile
-        protected string _dataProfile => _HTTPContextHelper.HttpContext().User.GetUserDataProfile();
+        //protected string _dataProfile => _HTTPContextHelper.HttpContext().User.GetUserDataProfile();
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

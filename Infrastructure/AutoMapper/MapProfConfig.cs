@@ -15,9 +15,9 @@ namespace Premier.API.FileUploadDownload.Infrastructure.AutoMapper
     {
         public MapProfConfig()
         {
-            CreateMap<NoteUpdateRequest, Note>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.NoteID))
-                .ReverseMap();
+            //CreateMap<NoteUpdateRequest, FSEntry>()
+            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.NoteID))
+            //    .ReverseMap();
 
             CreateMap<FileUploadRequest, FileUpload>(MemberList.None);
 				//.ForMember(dest => dest.NoteText, opt => opt.MapFrom(src => src.NoteText))

@@ -14,11 +14,11 @@ namespace Premier.API.FileUploadDownload.Data.UnitsOfWork
     public class NoteUnitOfWork : UnitOfWork
     {
         private readonly ApplicationDbContext _context;
-        public NoteRepository _noteRepository { get; }
+        public FSEntriesRepository _noteRepository { get; }
 
         public NoteUnitOfWork(
             ApplicationDbContext context,
-            NoteRepository noteRepository
+            FSEntriesRepository noteRepository
         ) : base(context)
         {
             _context = context;

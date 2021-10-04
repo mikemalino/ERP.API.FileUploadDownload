@@ -29,6 +29,7 @@ using Premier.API.FileUploadDownload.Services;
 using Microsoft.EntityFrameworkCore;
 using Premier.API.Core.Authentication.Helpers;
 using System.IO;
+using Premier.API.Core.Services;
 
 namespace Premier.API.FileUploadDownload.Services
 {
@@ -38,7 +39,7 @@ namespace Premier.API.FileUploadDownload.Services
         private readonly ILogger<FileUploadService> _logger;
 
         private readonly NoteUnitOfWork _noteUnitOfWork;
-        private readonly NoteRepository _noteRepository;
+        private readonly FSEntriesRepository _noteRepository;
         private readonly NoteDataServices _noteDataServices;
 
         private readonly iHTTPContextHelper _HTTPContextHelper;
@@ -47,7 +48,7 @@ namespace Premier.API.FileUploadDownload.Services
                     IMapper mapper,
                     iHTTPContextHelper HTTPContextHelper,
                     NoteUnitOfWork noteUnitOfWork,
-                    NoteRepository noteRepository,
+                    FSEntriesRepository noteRepository,
                     NoteDataServices noteDataServices,
                     ILogger<FileUploadService> logger
                 )
@@ -86,12 +87,15 @@ namespace Premier.API.FileUploadDownload.Services
         public async Task<bool> UploadAsync(FileUploadRequest fileUpload)
         {
             // TO DO:
-            /* 1) Create Stored Procedure to insert records into Import and FSEntries Tables
-			 * 2) Get resulting FSEntriesID and Filepath 
-			 * 3) Call FileIO on Frameworks passing the above Filepath
-			 * 4) Return Success/Failure
-			 *    a) SP Failure
-			 *    b) File Save Failure
+            /* 1) Create FSEntries Record
+             *      a) Import Type
+             *      b) FileName
+             *      c) CreateUser
+             *      d) Org
+             *      
+             * 2) Get the new ID for that Record
+             * 3) Get the fssubfolder for the pathcode
+             *      a) SELECT vpc.FSSubFolder, IT.ImportType FROM vPathCodes vpc WITH (NOLOCK) INNER JOIN dbo.vImportType IT WITH (NOLOCK) ON IT.PathCode = vpc.PathCode ORDER BY IT.ImportType;
 			 * 
 			 * 
 			 * 
@@ -100,8 +104,8 @@ namespace Premier.API.FileUploadDownload.Services
             {
                 #region variables
                 string sqlProcedure = "mcsp_API_FSEntries_Add";
-                string dbconnectionstring = _config.GetConnectionString("SQLDBConnectionString");
-                DbFactory myFactory = new DbFactory(dbconnectionstring);
+                //string dbconnectionstring = _config.GetConnectionString("SQLDBConnectionString");
+                //DbFactory myFactory = new DbFactory(dbconnectionstring);
                 DynamicParameters sqlParameters = new DynamicParameters();
                 string[] fileParts = fileUpload.UploadedFile.FileName.Split('.');
                 string fileUploadName = fileParts[0] + "_" + DateTime.Now.ToString("yyyy_MM_dd-HH_mm_ss") + "." + fileParts[1];
@@ -113,19 +117,21 @@ namespace Premier.API.FileUploadDownload.Services
                 sqlParameters.Add("FileName", fileUploadName);
                 sqlParameters.Add("CreateUser", fileUpload.UserID);
                 sqlParameters.Add("Org", "200"); //Hardcoded for POC
-                var returnData = await myFactory.DbQueryAsyncWithRetry<string>(fileUpload.CustomerID, sqlProcedure, sqlParameters, System.Data.CommandType.StoredProcedure);
+                //var returnData = await myFactory.DbQueryAsyncWithRetry<string>(fileUpload.CustomerID, sqlProcedure, sqlParameters, System.Data.CommandType.StoredProcedure);
                 #endregion
 
                 string fsSubRoot = "";
-                foreach (var item in returnData)
-                {
-                    fsSubRoot = item.ToString();
-                }
+                //foreach (var item in returnData)
+                //{
+                //    fsSubRoot = item.ToString();
+                //}
 
                 MemoryStream myStream = new MemoryStream();
                 fileUpload.UploadedFile.CopyTo(myStream);
                 FileIO fileIO = new FileIO();
-                return await fileIO.SaveFile(myStream, fileUploadName, myFactory.customerRecordInfo.FSRoot + fsSubRoot);
+                //TODO: Replace FSRoot
+                string FSRoot = "HarCoded at the moment";
+                return await fileIO.SaveFile(myStream, fileUploadName, FSRoot + fsSubRoot);
 
             }
             catch (Exception ex)

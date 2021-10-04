@@ -4,11 +4,11 @@
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
     using Premier.API.FileUploadDownload.Data.Entity;
 
-    public class NoteConfig : IEntityTypeConfiguration<Note>
+    public class FSEntryConfig : IEntityTypeConfiguration<FSEntry>
     {
-        public void Configure(EntityTypeBuilder<Note> entity)
+        public void Configure(EntityTypeBuilder<FSEntry> entity)
         {
-            entity.ToTable("Notes");
+            entity.ToTable("FSEntry");
 
             entity.Property(e => e.Id)
                 .HasColumnName("ID");
@@ -20,26 +20,17 @@
                 .HasMaxLength(20)
                 .IsUnicode(false);
 
-            entity.Property(e => e.CreateUserId).HasColumnName("CreateUserID");
+            entity.Property(e => e.CreateUser).HasColumnName("CreateUser");
 
-            entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
+            entity.Property(e => e.LastUsedDate).HasColumnType("datetime");
 
-            entity.Property(e => e.ModifiedUser)
+            entity.Property(e => e.LastUsedUser)
                 .HasMaxLength(20)
                 .IsUnicode(false);
 
-            entity.Property(e => e.ModifiedUserId).HasColumnName("ModifiedUserID");
+            entity.Property(e => e.LastUsedUser).HasColumnName("LastUsedUser");
 
-            entity.Property(e => e.NoteText)
-                .IsRequired()
-                .HasColumnName("NoteText");
 
-            entity.Property(e => e.NoteDate).HasColumnType("datetime");
-
-            entity.Property(e => e.TimeStamp)
-                .IsRequired()
-                .IsRowVersion()
-                .IsConcurrencyToken();
         }
     }
 }
