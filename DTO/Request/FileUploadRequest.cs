@@ -4,8 +4,6 @@ namespace Premier.API.FileUploadDownload.DTO.Request
 {
     public class FileUploadRequest
     {
-		public string CustomerID { get; set; }
-		public string UserID { get; set; }
 		public string ImportType { get; set; }
 		public string SourceFile_UPL { get; set; }
 		public string Message { get; set; }

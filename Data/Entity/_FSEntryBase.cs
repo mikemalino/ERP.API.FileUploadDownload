@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Premier.API.FileUploadDownload.Data.Entity
 {
-    public partial class FSEntry : IEntity
+    public partial class FSEntry : IEntity, ICreateUser, ILastUsedUser
     {
     }
 }

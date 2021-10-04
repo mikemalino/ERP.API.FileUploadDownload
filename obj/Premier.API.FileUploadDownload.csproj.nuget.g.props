@@ -18,6 +18,24 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Content Include="$(NuGetPackageRoot)premier.api.core\2.0.20211001.1\contentFiles\any\netcoreapp3.1\appsettings.STAGE.json" Condition="Exists('$(NuGetPackageRoot)premier.api.core\2.0.20211001.1\contentFiles\any\netcoreapp3.1\appsettings.STAGE.json')">
+      <NuGetPackageId>Premier.API.Core</NuGetPackageId>
+      <NuGetPackageVersion>2.0.20211001.1</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>appsettings.STAGE.json</Link>
+    </Content>
+    <Content Include="$(NuGetPackageRoot)premier.api.core\2.0.20211001.1\contentFiles\any\netcoreapp3.1\appsettings.logs.json" Condition="Exists('$(NuGetPackageRoot)premier.api.core\2.0.20211001.1\contentFiles\any\netcoreapp3.1\appsettings.logs.json')">
+      <NuGetPackageId>Premier.API.Core</NuGetPackageId>
+      <NuGetPackageVersion>2.0.20211001.1</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <Pack>false</Pack>
+      <Private>False</Private>
+      <Link>appsettings.logs.json</Link>
+    </Content>
+  </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design\5.0.7\build\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design\5.0.7\build\netcoreapp3.0\Microsoft.EntityFrameworkCore.Design.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.visualstudio.azure.containers.tools.targets\1.10.14\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props" Condition="Exists('$(NuGetPackageRoot)microsoft.visualstudio.azure.containers.tools.targets\1.10.14\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props')" />

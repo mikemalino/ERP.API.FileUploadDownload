@@ -5,7 +5,6 @@ C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\Premier.API.FileUploadDownload.csproj.CoreCompileInputs.cache
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\Premier.API.FileUploadDownload.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\Premier.API.FileUploadDownload.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\appsettings.STAGE.json
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\appsettings.logs.json
@@ -260,8 +259,6 @@ C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\Premier.API.Core.dll
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\Premier.CommonData.dll
-C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\Premier.API.Core.pdb
-C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\Premier.CommonData.pdb
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\staticwebassets\Premier.API.FileUploadDownload.StaticWebAssets.Manifest.cache
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\staticwebassets\Premier.API.FileUploadDownload.StaticWebAssets.xml
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\scopedcss\bundle\Premier.API.FileUploadDownload.styles.css
@@ -270,3 +267,5 @@ C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\Premier.API.FileUploadDownload.dll
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\Premier.API.FileUploadDownload.pdb
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\Premier.API.FileUploadDownload.genruntimeconfig.cache
+C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\Premier.CommonData.ERPNA.dll
+C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\Premier.CommonData.ERPNA.pdb

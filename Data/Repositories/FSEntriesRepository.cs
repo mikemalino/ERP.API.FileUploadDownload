@@ -19,7 +19,7 @@ using System.Linq.Expressions;
 
 namespace Premier.API.FileUploadDownload.Data.Repositories
 {
-    public class FSEntriesRepository : GenericRepository<FileUpload>
+    public class FSEntriesRepository : GenericRepository<FSEntry>
     {
         
         protected readonly IERPCommonData _erpCommonDataLookup;
@@ -31,26 +31,7 @@ namespace Premier.API.FileUploadDownload.Data.Repositories
 
         #region FSEntries CRUD Operations
 
-        public EntityEntry InsertFSEntries(FileUploadRequest fileUploadRequest)
-        {
-            FileUpload item = _mapper.Map<FileUpload>(fileUploadRequest);
-            //item.NoteDate = DateTime.UtcNow;
-            //item.NoteRefs.Add(new NoteRef() { RefEntityId = noteInsertRequest.EntityID, RefType = noteInsertRequest.EntityType });
-            return this.Insert(item);
-        }
 
-        public void UpdateFSEntries(FileUploadRequest fileUploadRequest)
-        {
-            //Note note = this.GetByPK(fileUploadRequest.NoteID);
-            //note.NoteText = noteUpdateRequest.NoteText;
-
-            //var fields = new Expression<Func<Note, object>>[]
-            //{
-            //    i => i.NoteText
-            //};
-
-            //this.UpdateFields(note, fields);
-        }
 
 
         public IEnumerable<TResult> GetSavedEntities<TResult>()

@@ -11,18 +11,18 @@ using System.Threading.Tasks;
 namespace Premier.API.FileUploadDownload.Data.UnitsOfWork
 {
 
-    public class NoteUnitOfWork : UnitOfWork
+    public class FSEntriesUnitOfWork : UnitOfWork
     {
         private readonly ApplicationDbContext _context;
-        public FSEntriesRepository _noteRepository { get; }
+        public FSEntriesRepository _fsEntriesRepository { get; }
 
-        public NoteUnitOfWork(
+        public FSEntriesUnitOfWork(
             ApplicationDbContext context,
-            FSEntriesRepository noteRepository
+            FSEntriesRepository fsEntriesRepository
         ) : base(context)
         {
             _context = context;
-            _noteRepository = noteRepository;
+            _fsEntriesRepository = fsEntriesRepository;
         }
     }
 }

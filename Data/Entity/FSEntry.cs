@@ -12,7 +12,7 @@ namespace Premier.API.FileUploadDownload.Data.Entity
         public string FileName { get; set; }
         public string FileDesc { get; set; }
         public string CreateUser { get; set; }
-        public DateTime? CreateDate { get; set; }
+        public DateTime CreateDate { get; set; }
         public DateTime? LastUsedDate { get; set; }
         public string LastUsedUser { get; set; }
         public DateTime? LastDownloadDate { get; set; }

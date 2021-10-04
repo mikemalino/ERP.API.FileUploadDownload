@@ -33,61 +33,58 @@ using Premier.API.Core.Services;
 
 namespace Premier.API.FileUploadDownload.Services
 {
-    public class FileUploadService : IBaseService
-    {
-        private readonly IMapper _mapper;
-        private readonly ILogger<FileUploadService> _logger;
+	public class FileUploadService : IBaseService
+	{
+		private readonly IMapper _mapper;
+		private readonly ILogger<FileUploadService> _logger;
 
-        private readonly NoteUnitOfWork _noteUnitOfWork;
-        private readonly FSEntriesRepository _noteRepository;
-        private readonly NoteDataServices _noteDataServices;
+		private readonly FSEntriesUnitOfWork _fsEntriesUnitOfWork;
+		private readonly FSEntriesRepository _fsEntriesRepository;
 
-        private readonly iHTTPContextHelper _HTTPContextHelper;
+		private readonly iHTTPContextHelper _HTTPContextHelper;
 
-        public FileUploadService(
-                    IMapper mapper,
-                    iHTTPContextHelper HTTPContextHelper,
-                    NoteUnitOfWork noteUnitOfWork,
-                    FSEntriesRepository noteRepository,
-                    NoteDataServices noteDataServices,
-                    ILogger<FileUploadService> logger
-                )
-        {
-            _mapper = mapper;
-            _logger = logger;
+		public FileUploadService(
+					IMapper mapper,
+					iHTTPContextHelper HTTPContextHelper,
+					FSEntriesUnitOfWork fsEntriesUnitOfWork,
+					FSEntriesRepository fsEntriesRepository,
+					ILogger<FileUploadService> logger
+				)
+		{
+			_mapper = mapper;
+			_logger = logger;
 
-            _noteUnitOfWork = noteUnitOfWork;
-            _noteRepository = noteRepository;
-            _noteDataServices = noteDataServices;
+			_fsEntriesUnitOfWork = fsEntriesUnitOfWork;
+			_fsEntriesRepository = fsEntriesRepository;
 
-            _HTTPContextHelper = HTTPContextHelper;
+			_HTTPContextHelper = HTTPContextHelper;
 
-            _logger.LogInformation("Service Created");
-        }
+			_logger.LogInformation("Service Created");
+		}
 
-        //public async Task<NoteRecordResponse> InsertAsync(FileUploadRequest fileUploadRequest)
-        //{
-        //    _noteUnitOfWork.CreateTransaction();
+		//public async Task<NoteRecordResponse> InsertAsync(FileUploadRequest fileUploadRequest)
+		//{
+		//    _noteUnitOfWork.CreateTransaction();
 
-        //    try
-        //    {
-        //        _noteRepository.InsertNote(noteInsertRequest);
-        //        int recordsAdds = await _noteUnitOfWork.CompleteAsync();
-        //        _noteUnitOfWork.Commit();
+		//    try
+		//    {
+		//        _noteRepository.InsertNote(noteInsertRequest);
+		//        int recordsAdds = await _noteUnitOfWork.CompleteAsync();
+		//        _noteUnitOfWork.Commit();
 
-        //        return _noteRepository.GetSavedEntities<NoteRecordResponse>().FirstOrDefault();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        _noteUnitOfWork.Rollback();
-        //        throw e;
-        //    }
-        //}
+		//        return _noteRepository.GetSavedEntities<NoteRecordResponse>().FirstOrDefault();
+		//    }
+		//    catch (Exception e)
+		//    {
+		//        _noteUnitOfWork.Rollback();
+		//        throw e;
+		//    }
+		//}
 
-        public async Task<bool> UploadAsync(FileUploadRequest fileUpload)
-        {
-            // TO DO:
-            /* 1) Create FSEntries Record
+		public async Task<int> UploadAsync(FileUploadRequest fileUpload)
+		{
+			// TO DO:
+			/* 1) Create FSEntries Record
              *      a) Import Type
              *      b) FileName
              *      c) CreateUser
@@ -100,87 +97,114 @@ namespace Premier.API.FileUploadDownload.Services
 			 * 
 			 * 
 			 */
-            try
-            {
-                #region variables
-                string sqlProcedure = "mcsp_API_FSEntries_Add";
-                //string dbconnectionstring = _config.GetConnectionString("SQLDBConnectionString");
-                //DbFactory myFactory = new DbFactory(dbconnectionstring);
-                DynamicParameters sqlParameters = new DynamicParameters();
-                string[] fileParts = fileUpload.UploadedFile.FileName.Split('.');
-                string fileUploadName = fileParts[0] + "_" + DateTime.Now.ToString("yyyy_MM_dd-HH_mm_ss") + "." + fileParts[1];
+			try
+			{
+				var userID = _HTTPContextHelper.HttpContext().User.GetUserId();
+				var customerID = _HTTPContextHelper.HttpContext().User.GetTenantCode();
+				int result = 0;
 
-                #endregion
+				FSEntry item = new FSEntry();
+				item.PathCode = "CI";
+				item.FileName = fileUpload.SourceFile_UPL;
+				item.FileDesc = "FileDesc1";
+				item.GwdownloadStatus = 0;
+				item.Org = "200";
 
-                #region Call SQL stored proc
-                sqlParameters.Add("ImportType", fileUpload.ImportType);
-                sqlParameters.Add("FileName", fileUploadName);
-                sqlParameters.Add("CreateUser", fileUpload.UserID);
-                sqlParameters.Add("Org", "200"); //Hardcoded for POC
-                //var returnData = await myFactory.DbQueryAsyncWithRetry<string>(fileUpload.CustomerID, sqlProcedure, sqlParameters, System.Data.CommandType.StoredProcedure);
-                #endregion
+				_fsEntriesUnitOfWork.CreateTransaction();
+				try
+				{
 
-                string fsSubRoot = "";
-                //foreach (var item in returnData)
-                //{
-                //    fsSubRoot = item.ToString();
-                //}
+					_fsEntriesUnitOfWork._fsEntriesRepository.Insert(item);
+					result = await _fsEntriesUnitOfWork.CompleteAsync();
+					_fsEntriesUnitOfWork.Commit();
+				}
+				catch (Exception e)
+				{
+					_fsEntriesUnitOfWork.Rollback();
+					throw e;
+				}
 
-                MemoryStream myStream = new MemoryStream();
-                fileUpload.UploadedFile.CopyTo(myStream);
-                FileIO fileIO = new FileIO();
-                //TODO: Replace FSRoot
-                string FSRoot = "HarCoded at the moment";
-                return await fileIO.SaveFile(myStream, fileUploadName, FSRoot + fsSubRoot);
+				return result;
 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+				//#region variables
+				//string sqlProcedure = "mcsp_API_FSEntries_Add";
+				////string dbconnectionstring = _config.GetConnectionString("SQLDBConnectionString");
+				////DbFactory myFactory = new DbFactory(dbconnectionstring);
+				//DynamicParameters sqlParameters = new DynamicParameters();
+				//string[] fileParts = fileUpload.UploadedFile.FileName.Split('.');
+				//string fileUploadName = fileParts[0] + "_" + DateTime.Now.ToString("yyyy_MM_dd-HH_mm_ss") + "." + fileParts[1];
 
-        //public async Task<NoteRecordResponse> UpdateNoteText(NoteUpdateRequest noteUpdateRequest)
-        //{
-        //    _noteUnitOfWork.CreateTransaction();
+				//#endregion
 
-        //    try
-        //    {  
-        //        _noteRepository.UpdateNoteText(noteUpdateRequest);
-        //        int recordsUpdated = await _noteUnitOfWork.CompleteAsync();
-        //        _noteUnitOfWork.Commit();
+				//#region Call SQL stored proc
+				//sqlParameters.Add("ImportType", fileUpload.ImportType);
+				//sqlParameters.Add("FileName", fileUploadName);
+				//sqlParameters.Add("CreateUser", fileUpload.UserID);
+				//sqlParameters.Add("Org", "200"); //Hardcoded for POC
+				////var returnData = await myFactory.DbQueryAsyncWithRetry<string>(fileUpload.CustomerID, sqlProcedure, sqlParameters, System.Data.CommandType.StoredProcedure);
+				//#endregion
 
-        //        return _noteRepository.GetSavedEntities<NoteRecordResponse>().FirstOrDefault();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        _noteUnitOfWork.Rollback();
-        //        throw e;
-        //    }
-        //}
+				//string fsSubRoot = "";
+				////foreach (var item in returnData)
+				////{
+				////    fsSubRoot = item.ToString();
+				////}
 
-        //public async Task<int> DeleteNoteText(int notesID)
-        //{
-        //    _noteUnitOfWork.CreateTransaction();
-        //    int result = 0;
-        //    try
-        //    {
-        //        _noteUnitOfWork._noteRepository.DeleteNoteText(notesID);
-        //        result = await _noteUnitOfWork.CompleteAsync();
-        //        _noteUnitOfWork.Commit();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        _noteUnitOfWork.Rollback();
-        //        throw e;
-        //    }
-        //    return result;
-        //}
+				//MemoryStream myStream = new MemoryStream();
+				//fileUpload.UploadedFile.CopyTo(myStream);
+				//FileIO fileIO = new FileIO();
+				////TODO: Replace FSRoot
+				//string FSRoot = "HarCoded at the moment";
+				//return await fileIO.SaveFile(myStream, fileUploadName, FSRoot + fsSubRoot);
 
-        //public async Task<List<NoteRecordResponse>> GetNotesByEntityID(int entityID, int entityType)
-        //{
-        //    var result = await _noteRepository.qNoteRecordResponse(entityID, entityType).ToListAsync();
-        //    return result;
-        //}
-    }
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		//public async Task<NoteRecordResponse> UpdateNoteText(NoteUpdateRequest noteUpdateRequest)
+		//{
+		//    _noteUnitOfWork.CreateTransaction();
+
+		//    try
+		//    {  
+		//        _noteRepository.UpdateNoteText(noteUpdateRequest);
+		//        int recordsUpdated = await _noteUnitOfWork.CompleteAsync();
+		//        _noteUnitOfWork.Commit();
+
+		//        return _noteRepository.GetSavedEntities<NoteRecordResponse>().FirstOrDefault();
+		//    }
+		//    catch (Exception e)
+		//    {
+		//        _noteUnitOfWork.Rollback();
+		//        throw e;
+		//    }
+		//}
+
+		//public async Task<int> DeleteNoteText(int notesID)
+		//{
+		//    _noteUnitOfWork.CreateTransaction();
+		//    int result = 0;
+		//    try
+		//    {
+		//        _noteUnitOfWork._noteRepository.DeleteNoteText(notesID);
+		//        result = await _noteUnitOfWork.CompleteAsync();
+		//        _noteUnitOfWork.Commit();
+		//    }
+		//    catch (Exception e)
+		//    {
+		//        _noteUnitOfWork.Rollback();
+		//        throw e;
+		//    }
+		//    return result;
+		//}
+
+		//public async Task<List<NoteRecordResponse>> GetNotesByEntityID(int entityID, int entityType)
+		//{
+		//    var result = await _noteRepository.qNoteRecordResponse(entityID, entityType).ToListAsync();
+		//    return result;
+		//}
+	}
 }

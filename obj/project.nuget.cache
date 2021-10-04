@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HrSrP/900shmn8S3AhkmNqFMRat3M+T2V4bL+4ay9n4jbB9bVlGpXUtKyaYtiaoqN2H+pbZYXAffkNH3f2j3aQ==",
+  "dgSpecHash": "RxZrP3CGyFzdMDGUWBkFbMkGyo2VYN3ZpNLE/63ICByczZnt/qPlhPy6fiTJ/hPBXHbGcXq1K4LhImGcO6SMGA==",
   "success": true,
   "projectFilePath": "C:\\Users\\mmalinow\\source\\repos\\FileUploadDownLoad\\Premier.API.FileUploadDownload\\Premier.API.FileUploadDownload.csproj",
   "expectedPackageFiles": [
@@ -138,6 +138,8 @@
     "C:\\Users\\mmalinow\\.nuget\\packages\\polly\\7.1.0\\polly.7.1.0.nupkg.sha512",
     "C:\\Users\\mmalinow\\.nuget\\packages\\polly.extensions.http\\3.0.0\\polly.extensions.http.3.0.0.nupkg.sha512",
     "C:\\Users\\mmalinow\\.nuget\\packages\\portable.bouncycastle\\1.8.1.3\\portable.bouncycastle.1.8.1.3.nupkg.sha512",
+    "C:\\Users\\mmalinow\\.nuget\\packages\\premier.api.core\\2.0.20211001.1\\premier.api.core.2.0.20211001.1.nupkg.sha512",
+    "C:\\Users\\mmalinow\\.nuget\\packages\\premier.commondata\\2.0.20211001.1\\premier.commondata.2.0.20211001.1.nupkg.sha512",
     "C:\\Users\\mmalinow\\.nuget\\packages\\rabbitmq.client\\6.2.1\\rabbitmq.client.6.2.1.nupkg.sha512",
     "C:\\Users\\mmalinow\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\mmalinow\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
@@ -280,9 +282,7 @@
     "C:\\Users\\mmalinow\\.nuget\\packages\\yamldotnet\\6.0.0\\yamldotnet.6.0.0.nupkg.sha512",
     "C:\\Users\\mmalinow\\.nuget\\packages\\z.entityframework.extensions.efcore\\5.2.8\\z.entityframework.extensions.efcore.5.2.8.nupkg.sha512",
     "C:\\Users\\mmalinow\\.nuget\\packages\\z.entityframework.plus.efcore\\5.2.8\\z.entityframework.plus.efcore.5.2.8.nupkg.sha512",
-    "C:\\Users\\mmalinow\\.nuget\\packages\\z.expressions.eval\\4.0.51\\z.expressions.eval.4.0.51.nupkg.sha512",
-    "C:\\Users\\mmalinow\\.nuget\\packages\\premier.api.core\\2.0.21\\premier.api.core.2.0.21.nupkg.sha512",
-    "C:\\Users\\mmalinow\\.nuget\\packages\\premier.commondata\\1.0.5\\premier.commondata.1.0.5.nupkg.sha512"
+    "C:\\Users\\mmalinow\\.nuget\\packages\\z.expressions.eval\\4.0.51\\z.expressions.eval.4.0.51.nupkg.sha512"
   ],
   "logs": []
 }
