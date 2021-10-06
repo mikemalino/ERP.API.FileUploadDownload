@@ -19,11 +19,14 @@ namespace Premier.API.FileUploadDownload.Infrastructure.AutoMapper
 			//	.ForMember(dest => dest.Org, opt => opt.MapFrom(src => src.))
 			//	.ReverseMap();
 
-			CreateMap<FileUploadRequest, FileUpload>(MemberList.None);
+			//CreateMap<FileUploadRequest, FileUpload>(MemberList.None);
 				//.ForMember(dest => dest.NoteText, opt => opt.MapFrom(src => src.NoteText))
 				//.ForMember(dest => dest.NoteType, opt => opt.MapFrom(src => src.NoteType));
 
 			CreateMap<FileUploadRequest, FileUploadResponse>().ReverseMap();
+
+			CreateMap<FSEntry, FileUploadResponse>()
+				.ForMember(dest => dest.FSEntriesID, opt => opt.MapFrom(src => src.Id));
 
             /*
 			CreateMap<Note, NoteResponse>().ReverseMap();

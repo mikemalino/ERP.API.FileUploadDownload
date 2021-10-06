@@ -42,13 +42,15 @@ namespace Premier.API.FileUploadDownload.Services
 		private readonly FSEntriesRepository _fsEntriesRepository;
 
 		private readonly iHTTPContextHelper _HTTPContextHelper;
+		private readonly FileDataServices _fileDataServices;
 
 		public FileUploadService(
 					IMapper mapper,
 					iHTTPContextHelper HTTPContextHelper,
 					FSEntriesUnitOfWork fsEntriesUnitOfWork,
 					FSEntriesRepository fsEntriesRepository,
-					ILogger<FileUploadService> logger
+					ILogger<FileUploadService> logger,
+					FileDataServices fileDataServices
 				)
 		{
 			_mapper = mapper;
@@ -58,6 +60,7 @@ namespace Premier.API.FileUploadDownload.Services
 			_fsEntriesRepository = fsEntriesRepository;
 
 			_HTTPContextHelper = HTTPContextHelper;
+			_fileDataServices = fileDataServices;
 
 			_logger.LogInformation("Service Created");
 		}
@@ -81,7 +84,7 @@ namespace Premier.API.FileUploadDownload.Services
 		//    }
 		//}
 
-		public async Task<int> UploadAsync(FileUploadRequest fileUpload)
+		public async Task<IEnumerable<FileUploadResponse>> UploadAsync(FileUploadRequest fileUpload)
 		{
 			// TO DO:
 			/* 1) Create FSEntries Record
@@ -102,14 +105,18 @@ namespace Premier.API.FileUploadDownload.Services
 				var userID = _HTTPContextHelper.HttpContext().User.GetUserId();
 				var customerID = _HTTPContextHelper.HttpContext().User.GetTenantCode();
 				int result = 0;
+				//vImportType myImporttype = await _fileDataServices.GetImportType(fileUpload.ImportType);
+				string pathcode = await _fileDataServices.GetImportTypeV2(fileUpload.ImportType);
+
 
 				FSEntry item = new FSEntry();
-				item.PathCode = "CI";
+				item.PathCode = pathcode;
 				item.FileName = fileUpload.SourceFile_UPL;
-				item.FileDesc = "FileDesc1";
+				item.FileDesc = fileUpload.ImportTypeDesc;
 				item.GwdownloadStatus = 0;
 				item.Org = "200";
 
+				IEnumerable<FileUploadResponse> fileUploadResponse = null;
 				_fsEntriesUnitOfWork.CreateTransaction();
 				try
 				{
@@ -117,14 +124,21 @@ namespace Premier.API.FileUploadDownload.Services
 					_fsEntriesUnitOfWork._fsEntriesRepository.Insert(item);
 					result = await _fsEntriesUnitOfWork.CompleteAsync();
 					_fsEntriesUnitOfWork.Commit();
+					fileUploadResponse = _fsEntriesUnitOfWork._fsEntriesRepository.GetSavedEntities<FileUploadResponse>();
 				}
 				catch (Exception e)
 				{
 					_fsEntriesUnitOfWork.Rollback();
 					throw e;
 				}
-
-				return result;
+				if (result == 1)
+				{
+					return fileUploadResponse;
+				}
+				else
+				{
+					return null;
+				}
 
 				//#region variables
 				//string sqlProcedure = "mcsp_API_FSEntries_Add";

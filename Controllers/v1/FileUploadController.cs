@@ -46,7 +46,15 @@ namespace Premier.API.FileUploadDownload.Controllers
         {
             try
             {
-                return new ApiResponse($"File Uploaded.", await _fileUploadService.UploadAsync(uploadFileRequest));
+                var result = await _fileUploadService.UploadAsync(uploadFileRequest);
+                if (result != null)
+                {
+                    return new ApiResponse($"File Uploaded.", result);
+				}
+				else
+				{
+                    return new ApiResponse($"File not uploaded");
+				}
             }
             catch (Exception e)
             {

@@ -8,6 +8,7 @@ namespace Premier.API.FileUploadDownload.DTO.Response
 {
 	public class FileUploadResponse
 	{
+		public int FSEntriesID { get; set; }
 		public string ImportType { get; set; }
 		public string SourceFile_UPL { get; set; }
 		public string Message { get; set; }
