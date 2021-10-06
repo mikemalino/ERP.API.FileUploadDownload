@@ -30,6 +30,7 @@ using Microsoft.EntityFrameworkCore;
 using Premier.API.Core.Authentication.Helpers;
 using System.IO;
 using Premier.API.Core.Services;
+using Premier.TenantConfig.Core;
 
 namespace Premier.API.FileUploadDownload.Services
 {
@@ -65,24 +66,6 @@ namespace Premier.API.FileUploadDownload.Services
 			_logger.LogInformation("Service Created");
 		}
 
-		//public async Task<NoteRecordResponse> InsertAsync(FileUploadRequest fileUploadRequest)
-		//{
-		//    _noteUnitOfWork.CreateTransaction();
-
-		//    try
-		//    {
-		//        _noteRepository.InsertNote(noteInsertRequest);
-		//        int recordsAdds = await _noteUnitOfWork.CompleteAsync();
-		//        _noteUnitOfWork.Commit();
-
-		//        return _noteRepository.GetSavedEntities<NoteRecordResponse>().FirstOrDefault();
-		//    }
-		//    catch (Exception e)
-		//    {
-		//        _noteUnitOfWork.Rollback();
-		//        throw e;
-		//    }
-		//}
 
 		public async Task<IEnumerable<FileDownloadResponse>> GetFiles(int fsEntriesID)
 		{
@@ -90,11 +73,27 @@ namespace Premier.API.FileUploadDownload.Services
 			return result;
 		}
 
+		public async Task<MemoryStream> GetFile(int fsEntriesID)
+		{
+			try
+			{
+				var returnData = await GetFiles(fsEntriesID);
+				FileIO fileIO = new FileIO();
+				string filePathAndName = "";
+				var tenantInfo = (ITenantConfigData)_HTTPContextHelper.HttpContext().Items["CustomerTenantData"];
+				string fsRoot = tenantInfo.tenantFSRoot;
+				foreach (FileDownloadResponse response in returnData)
+				{
+					filePathAndName = fsRoot + response.fsSubFolder + response.FileName;
+				}
+				MemoryStream ms = await fileIO.GetFileData(filePathAndName);
+				return ms;
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
 
-		//public async Task<List<NoteRecordResponse>> GetNotesByEntityID(int entityID, int entityType)
-		//{
-		//    var result = await _noteRepository.qNoteRecordResponse(entityID, entityType).ToListAsync();
-		//    return result;
-		//}
 	}
 }

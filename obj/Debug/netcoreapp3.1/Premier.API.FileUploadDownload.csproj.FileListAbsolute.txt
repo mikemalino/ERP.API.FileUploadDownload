@@ -269,3 +269,4 @@ C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\obj\Debug\netcoreapp3.1\Premier.API.FileUploadDownload.genruntimeconfig.cache
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\Premier.CommonData.ERPNA.dll
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\Premier.CommonData.ERPNA.pdb
+C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\web.config
