@@ -83,12 +83,12 @@ namespace Premier.API.FileUploadDownload.Services
 		//        throw e;
 		//    }
 		//}
-		
-		//public async Task<IEnumerable<FileDownloadResponse>> GetFiles(int fsEntriesID)
-		//{
-		//	var result = await _fileDataServices.qNoteRecordResponse(entityID, entityType).ToListAsync();
-		//	return result;
-		//}
+
+		public async Task<IEnumerable<FileDownloadResponse>> GetFiles(int fsEntriesID)
+		{
+			var result = await _fileDataServices.GetFSEntryList(fsEntriesID);
+			return result;
+		}
 
 
 		//public async Task<List<NoteRecordResponse>> GetNotesByEntityID(int entityID, int entityType)

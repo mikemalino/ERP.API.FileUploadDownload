@@ -1,33 +1,48 @@
 {
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:64326",
-      "sslPort": 44326
-    }
-  },
-  "$schema": "http://json.schemastore.org/launchsettings.json",
-  "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "https://localhost:44326/swagger/index.html",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "sqlDebugging": true,
-      "nativeDebugging": true
-    },
-    "Docker": {
-      "commandName": "Docker",
-      "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger/index.html",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "publishAllPorts": true,
-      "useSSL": true
-    }
-  }
+	"iisSettings": {
+		"windowsAuthentication": false,
+		"anonymousAuthentication": true,
+		"iis": {
+			"applicationUrl": "http://localhost/Premier.API.FileUploadDownload",
+			"sslPort": 0
+		},
+		"iisExpress": {
+			"applicationUrl": "http://localhost:64326",
+			"sslPort": 44326
+		}
+	},
+	"$schema": "http://json.schemastore.org/launchsettings.json",
+	"profiles": {
+		"IIS Express": {
+			"commandName": "IISExpress",
+			"launchBrowser": true,
+			"launchUrl": "https://localhost:44326/swagger/index.html",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development"
+			},
+			"sqlDebugging": true,
+			"nativeDebugging": true
+		},
+		"Docker": {
+			"commandName": "Docker",
+			"launchBrowser": true,
+			"launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger/index.html",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development"
+			},
+			"publishAllPorts": true,
+			"useSSL": true
+		},
+
+		"IISWeb": {
+			"commandName": "IIS",
+			"launchBrowser": true,
+			"launchUrl": "https://localhost/swagger/indexhtml",
+			"environmentVariables": {
+				"ASPNETCORE_ENVIRONMENT": "Development"
+			},
+			"sqlDebugging": true,
+			"nativeDebugging": true
+		}
+	}
 }

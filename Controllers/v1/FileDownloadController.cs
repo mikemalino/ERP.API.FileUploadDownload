@@ -38,29 +38,29 @@ namespace Premier.API.FileUploadDownload.Controllers
         }
 
 
-		//[HttpPost]
-		//[ValidateModel]
-		//[Authorize]
-		//[ProducesResponseType(typeof(FileDownloadResponse), Status200OK)]
-		//public async Task<ApiResponse> GetFiles(int fsEntriesID)
-		//{
-		//	try
-		//	{
-		//		var result = await _fileDownloadService.GetFiles(fsEntriesID);
-		//		if (result != null)
-		//		{
-		//			return new ApiResponse(result);
-		//		}
-		//		else
-		//		{
-		//			return new ApiResponse($"No Files retrieved.");
-		//		}
-		//	}
-		//	catch (Exception e)
-		//	{
-		//		throw new ApiException(e, Status422UnprocessableEntity);
-		//	}
-		//}
+		[HttpGet]
+		[ValidateModel]
+		[Authorize]
+		[ProducesResponseType(typeof(FileDownloadResponse), Status200OK)]
+		public async Task<ApiResponse> GetFiles(int fsEntriesID)
+		{
+			try
+			{
+				var result = await _fileDownloadService.GetFiles(fsEntriesID);
+				if (result != null)
+				{
+					return new ApiResponse(result);
+				}
+				else
+				{
+					return new ApiResponse($"No Files retrieved.");
+				}
+			}
+			catch (Exception e)
+			{
+				throw new ApiException(e, Status422UnprocessableEntity);
+			}
+		}
 
 		//[HttpPost("upload")]
 		//[ProducesResponseType(typeof(ApiResponse), Status201Created)]
