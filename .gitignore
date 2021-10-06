@@ -107,3 +107,10 @@ obj/Debug/netcoreapp3.1/Premier.API.FileUploadDownload.csproj.FileListAbsolute.t
 obj/Debug/netcoreapp3.1/Premier.API.FileUploadDownload.dll
 obj/Debug/netcoreapp3.1/Premier.API.FileUploadDownload.pdb
 *.dll
+bin/Debug/netcoreapp3.1/Premier.API.FileUploadDownload.dll
+bin/Debug/netcoreapp3.1/Premier.API.FileUploadDownload.pdb
+obj/Debug/netcoreapp3.1/Premier.API.FileUploadDownload.csproj.AssemblyReference.cache
+obj/Debug/netcoreapp3.1/Premier.API.FileUploadDownload.csproj.CoreCompileInputs.cache
+obj/Debug/netcoreapp3.1/Premier.API.FileUploadDownload.csproj.FileListAbsolute.txt
+obj/Debug/netcoreapp3.1/Premier.API.FileUploadDownload.dll
+obj/Debug/netcoreapp3.1/Premier.API.FileUploadDownload.pdb
