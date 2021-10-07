@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using Premier.API.FileUploadDownload.Data.Entity;
+using System.IO;
 
 namespace Premier.API.FileUploadDownload.Controllers
 {
@@ -42,26 +43,35 @@ namespace Premier.API.FileUploadDownload.Controllers
 		[ValidateModel]
 		[Authorize]
 		[ProducesResponseType(typeof(FileDownloadResponse), Status200OK)]
-		public async Task<ApiResponse> GetFiles(int fsEntriesID)
+		public async Task<IActionResult> GetFiles(int fsEntriesID)
 		{
 			try
 			{
-				var result = (dynamic)null;
 				if (fsEntriesID == 0)
 				{
-					result = await _fileDownloadService.GetFiles(fsEntriesID);
+					var result = await _fileDownloadService.GetFiles(fsEntriesID);
+					if (result == null)
+					{
+						throw new ApiException($"No Files retrieved.",Status200OK);
+					}
+					else
+					{
+						return Ok(result);
+					}
+
 				}
 				else
 				{
-					result = await _fileDownloadService.GetFile(fsEntriesID);
-				}
-				if (result != null)
-				{
-					return new ApiResponse(result);
-				}
-				else
-				{
-					return new ApiResponse($"No Files retrieved.");
+					Stream fileData = await _fileDownloadService.GetFile(fsEntriesID);
+
+					if (fileData == null)
+					{
+						throw new ApiException($"No Files retrieved.", Status200OK);
+					}
+					else
+					{
+						return new FileStreamResult(fileData, "application/octet-stream");
+					}
 				}
 			}
 			catch (Exception e)
