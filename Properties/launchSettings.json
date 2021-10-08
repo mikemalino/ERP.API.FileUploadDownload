@@ -39,7 +39,7 @@
 			"launchBrowser": true,
 			"launchUrl": "https://localhost/swagger/indexhtml",
 			"environmentVariables": {
-				"ASPNETCORE_ENVIRONMENT": "Development"
+				"ASPNETCORE_ENVIRONMENT": "Staging"
 			},
 			"sqlDebugging": true,
 			"nativeDebugging": true

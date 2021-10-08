@@ -28,7 +28,7 @@ namespace Premier.API.FileUploadDownload.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class FileDownloadController : PremierAPIControllerBase
     {
         private readonly FileDownloadService _fileDownloadService;
@@ -41,7 +41,7 @@ namespace Premier.API.FileUploadDownload.Controllers
 
 		[HttpGet]
 		[ValidateModel]
-		[Authorize]
+		//[Authorize]
 		[ProducesResponseType(typeof(FileDownloadResponse), Status200OK)]
 		public async Task<IActionResult> GetFiles(int fsEntriesID)
 		{

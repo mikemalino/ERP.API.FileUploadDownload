@@ -15,18 +15,17 @@ using FluentValidation.AspNetCore;
 
 using Premier.API.Core.Infrastructure.Middleware;
 
-using Premier.API.FileUploadDownload.Infrastructure.Installers;
-using Premier.API.FileUploadDownload.Infrastructure.AutoMapper;
-using Premier.API.FileUploadDownload.Infrastructure.Extensions;
 using Premier.API.FileUploadDownload.Data.Contexts;
 
 using Premier.API.Core.Authentication.Configuration;
-using Premier.API.FileUploadDownload.Authorization.Policies;
 
-using Premier.CommonData.Core.Middleware;
+using Premier.CommonData.ERPNA.Middleware;
 using Premier.API.Core.Authentication.Service;
 using System.Reflection;
-using Premier.CommonData.ERPCommonData.Middleware;
+using Premier.API.FileUploadDownload.Infrastructure.Installers;
+using Premier.API.FileUploadDownload.Infrastructure.Extensions;
+using Premier.API.FileUploadDownload.Infrastructure.AutoMapper;
+using Premier.API.FileUploadDownload.Authorization.Policies;
 
 namespace Premier.API.FileUploadDownload
 {
@@ -87,7 +86,7 @@ namespace Premier.API.FileUploadDownload
             //Register MVC/Web API, NewtonsoftJson and add FluentValidation Support
             services.AddControllers()
                     .AddNewtonsoftJson(ops => { ops.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore; })
-                    .AddFluentValidation(fv => { 
+                    .AddFluentValidation(fv => {
                         fv.AutomaticValidationEnabled = true;
                         fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
                     });
@@ -101,11 +100,33 @@ namespace Premier.API.FileUploadDownload
                 .AddJwtBearerConfiguration(Configuration);
 
 
+            //            services.AddAuthorization();
+
+            /*
+            // Just an example of adding authorization
+            services.AddAuthorization(options =>
+            {
+                var scopes = new[] {
+                    "read:billing_settings",
+                    "update:billing_settings",
+                    "read:customers",
+                    "read:files"
+                };
+
+                Array.ForEach(scopes, scope =>
+                  options.AddPolicy(scope,
+                    policy => policy.Requirements.Add(
+                      new ScopeRequirement(Configuration["Jwt:Issuer"], scope)
+                    )
+                  )
+                );
+            });*/
+
             services.AddSingleton<IAuthorizationHandler, RequireScopeHandler>();
 
             services.AddCommonData(options =>
             {
-                options.UseERPCommonData(dataOptions =>
+                options.UseERPNACommonData(dataOptions =>
                 {
                     dataOptions.EnableLogging = true;
                     dataOptions.EnableSensitiveDataLogging = true;
@@ -132,7 +153,7 @@ namespace Premier.API.FileUploadDownload
             //Adds authorization middleware to the pipeline to make sure the Api endpoint cannot be accessed by anonymous clients
             app.UseAuthorization();
 
-            app.UseERPCommonData();
+            app.UseERPNACommonData();
 
             //            app.UseMiddleware<JwtMiddleware>();
 

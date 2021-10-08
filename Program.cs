@@ -54,6 +54,9 @@ namespace Premier.API.FileUploadDownload
                 {
                     webBuilder
                         .RegisterPremierAPIStartup()
+                        /* MLM Added */
+                        //.UseIISIntegration()
+                        /******/
                         .UseStartup<Startup>();
                 });
     }

@@ -270,3 +270,5 @@ C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\Premier.CommonData.ERPNA.dll
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\Premier.CommonData.ERPNA.pdb
 C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\web.config
+C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\appsettings.STAGE.json
+C:\Users\mmalinow\source\repos\FileUploadDownLoad\Premier.API.FileUploadDownload\bin\Debug\netcoreapp3.1\Premier.API.Core.pdb
